@@ -1,0 +1,64 @@
+<script src="jquery.js"></script>
+<script type="text/javascript">
+	// 2006-08-21 - Created
+// 2006-11-05 - Modified - head and body
+function addColumn(tblId)
+{
+	var tblHeadObj = document.getElementById(tblId).tHead;
+	for (var h=0; h<tblHeadObj.rows.length; h++) {
+		var newTH = document.createElement('th');
+		tblHeadObj.rows[h].appendChild(newTH);
+		newTH.innerHTML = 'KW2' + h + ', cell: ' + (tblHeadObj.rows[h].cells.length - 1)
+	}
+
+	var tblBodyObj = document.getElementById(tblId).tBodies[0];
+	for (var i=0; i<tblBodyObj.rows.length; i++) {
+		var newCell = tblBodyObj.rows[i].insertCell(-1);
+		newCell.innerHTML = '[td] row:' + i + ', cell: ' + (tblBodyObj.rows[i].cells.length - 1)
+	}
+}
+function deleteColumn(tblId)
+{
+	var allRows = document.getElementById(tblId).rows;
+	for (var i=0; i<allRows.length; i++) {
+		if (allRows[i].cells.length > 1) {
+			allRows[i].deleteCell(-1);
+		}
+	}
+}
+</script>
+
+<form>
+<select onchange="addColumn('tblSample')">
+	<option value="1">1pcs</option>
+	<option value="2">2pcs</option>
+	<option value="3">3pcs</option>
+</select>
+</form>
+
+<table border="1" id="tblSample">
+	<thead>
+		<tr>
+			<td>Error</td>
+			<td>KW2</td>
+			<td>KW3</td>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>Error 1</td>
+			<td><input type="text" name="error[]"></td>
+			<td><input type="text" name="error[]"></td>
+		</tr>
+		<tr>
+			<td>Error 2</td>
+			<td><input type="text" name="error[]"></td>
+			<td><input type="text" name="error[]"></td>
+		</tr>
+		<tr>
+			<td>Error 2</td>
+			<td><input type="text" name="error[]"></td>
+			<td><input type="text" name="error[]"></td>
+		</tr>	
+	</tbody>
+</table>
