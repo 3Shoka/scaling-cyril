@@ -17,11 +17,11 @@
             <option value="2">2</option>
             <option value="3">3</option>
         </select>
-        <input id="row" type="hidden" name="row" value="2">
+        <input id="row" type="hidden" name="row" value="4">
 
     </form>
 
-<form name="proses" id="proses">
+<form name="proses" id="proses" method="get">
     <div id="main">
         <div id="heading">
             <span>&nbsp;</span>
@@ -36,18 +36,21 @@ $(document).ready(function(){
     $("#select").change(function(){
         var a = $("#select").val();
         var r = $("#row").val();
+        var line = 1;
         
         for(i2 = 0;i2<r;i2++){
-            $("div#main").append("<div id='row'><span>Error</span></div>");
+            $("div#main").append("<div id='row'><span>Error"+line+"</span></div>");
+            line++;
         }
 
         for(i = 0;i<a;i++){
             $("div#heading").append("<span>KW2</span><span>KW3</span>");
-            $("div#row").append("<span><input type='text' size='6' name='err1' /></span><span><input type='text' size='6' name='err2' /></span>");
-            
-        }
+            $("div#row").append("<span><input type='text' size='6' name='kw2' /></span><span><input type='text' size='6' name='kw3' /></span>");
 
-        $("#proses").append("<button type='submit'>Prosess</button>");
+        }
+        r++;
+
+        $("#proses").append("<button>Prosess</button>");
     });
 
 });
